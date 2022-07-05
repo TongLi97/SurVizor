@@ -17,7 +17,7 @@ If you want to test the existing video data in the project, please prepare the p
 
 <h2 id="Installation">Installation</h2>                         
 First, you need to create a virtual environment for Survizor, and then install related dependencies.                                     
-Please refer to [requirements.txt](/requirements.txt) for more detailed tools and versions.     
+Please refer to "requirements.txt" for more detailed tools and versions.     
 
 ```shell
 conda create -n SurVizorEnv python=3.8
