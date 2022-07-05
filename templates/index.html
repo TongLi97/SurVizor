@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<!--第三步-->
+{% load static %}
+
+<html>
+<head>
+    <title>Welcome</title>
+    <meta charset="utf-8">
+    {% load static %}
+    <!--第四步-->
+    <script src="{% static 'js/d3.v5.js' %}"></script>
+    <script src="{% static 'js/bootstrap.js' %}"></script>
+    <script src="{% static 'js/jquery.js' %}"></script>
+
+    <script type="text/javascript" src="{% static 'js/echarts.min.js' %}"></script>
+    <script src="{% static 'js/multi-featureOverview.js' %}"></script>
+    <script src="{% static 'js/multi-featureDetail.js' %}"></script>
+    <script src="{% static 'js/multi-playSelected.js' %}"></script>
+    <script src="{% static 'js/multi-summary.js' %}"></script>
+    <script src="{% static 'js/multi-threshold.js' %}"></script>
+    <script src="{% static 'js/multi-tsnePoint.js' %}"></script>
+    <script src="{% static 'js/multi-network.js' %}"></script>
+    <script src="{% static 'js/multi-mtfLine.js' %}"></script>
+    <script src="{% static 'js/multi-pipBST.js' %}"></script>
+    <script src="{% static 'js/multi-playImage.js' %}"></script>
+    <script src="{% static 'js/slider_card.js' %}"></script>
+
+    <link rel="stylesheet" type="text/css" href="{% static 'css/weblayout.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+</head>
+<style>
+    html, body {
+        width: 99.8%;
+        height: 99%;
+    }
+    .line{
+        z-index: 100;
+    }
+    .node circle{
+        fill: #fff;
+        stroke: #ce5c5c;
+        stroke-width: 3px;
+    }
+
+    .node text{ font: 14px sans-serif;
+        color: #ccc;}
+
+    .link{
+        fill: none;
+        stroke: #ccc;
+        stroke-width: 2px;
+    }
+
+    .linkBTS{
+        fill: none;
+        stroke: #ccc;
+        stroke-width: 2px;
+    }
+    .popblock{width: 100px;height: 100px;top:100px;left:100px;z-index: 100;position:fixed;background: #fff;}
+    .popmask{width:100%; height: 100%;left: 0;top: 0;position:fixed;  z-index:99; background: rgba(0,0,0,0.6);}
+    .swiper-list{
+        height: 155px;
+        position: relative;
+        overflow: hidden;
+        border-top: 1px solid #eee;
+        padding: 30px 0px 5px;
+    }
+    .swiper-main{
+        height: 100%;
+        position: relative;
+    }
+    .swiper-main img{
+        height: 100%;
+        display: block;
+        position: absolute;
+        top: 0px;
+        border-radius: 4px;
+        display: inline-block;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+    .btn{
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 30px;
+        height: 30px;
+        z-index: 1002;
+    }
+    .leftBtn{
+        left: 0px;
+    }
+    .rightBtn{
+        right: 0px;
+    }
+</style>
+<body>
+{% csrf_token %} <!--Add when AJAX has a 403 error -->
+<div class="mainContainer">
+    <div id="loadingModal" class="loadingModal">
+    </div>
+
+    <!--left view-->
+    <div id="leftOverview" class="leftOverview" >
+
+        <div id="leftOverview1" class="leftOverview1">
+            <div id="FeaturePixelMenu" class="FeaturePixelMenu" style="position:relative;top:2px;left: 2px;width: 472px;height: 30px;background-color: #e8e8e8">
+                <span style="padding-left:4px;color:#515151 ;font-size: 14px;font-weight: bold">Video Overview</span>
+                <select id="video_select" class="select" style="height: 20px;width:75px;position:relative;left: 263px;top:0;border-radius: 10px;" onchange="selected()">
+                    <option  id="video1" value="1" >view-HC3</option>
+                    <option  id="video2" value="2" >view-HC4</option>
+                    <option  id="video3" value="3" >view-IP2</option>
+                    <option  id="video4" value="4" >view-IP5</option>
+                    <option  id="video5" value="5" >Aircraft</option>
+                    <option  id="video6" value="6" >CarOver</option>
+                    <option  id="video7" value="7" >StLanding</option>
+                </select>
+
+            </div>
+            <div id="iconTool" class="iconTool" style="position:relative;top:1%;left: 2px;width: 472px;height: 40px;/*background-color: darkgray*/"></div>
+
+            <div id="videoList" class="videoList" style="position:relative;top:2.5%;left: 2px;width: 472px;height: 555px;overflow-y:auto;/*background-color: darkgray*/">
+                <span style="padding-left:40px;color:#515151 ;font-size: 15px;font-weight: bold">Video </span>
+                <span style="padding-left:90px;color:#515151 ;font-size: 15px;font-weight: bold">Description </span>
+                <span style="padding-left:120px;color:#515151 ;font-size: 15px;font-weight: bold">Summary </span>
+
+                <ul class="list-group">
+                    <li class="list-group-item" style="height: 80px;">
+                        <span style="position:relative;padding-left:5px;top:15px;color:#515151 ;font-size: 15px;"> View HC3 </span>
+                        <span style="position:relative;padding-left:45px;top:15px;color:#515151 ;font-size: 15px;"> Front view of the lobby </span>
+                        <div  id="summaryHC3" class="summaryHC3" style="position:absolute;left:270px;top:0px;width:180px;height:80px;"></div>
+                    </li>
+                    <li class="list-group-item" style="height: 80px;">
+                        <span style="position:relative;padding-left:5px;top:15px;color:#515151 ;font-size: 15px;"> View HC4 </span>
+                        <span style="position:relative;padding-left:45px;top:15px;color:#515151 ;font-size: 15px;"> Left view of the lobby </span>
+                        <div  id="summaryHC4" class="summaryHC4" style="position:absolute;left:270px;top:0px;width:180px;height:80px;"></div>
+
+                    </li>
+                    <li class="list-group-item" style="height: 80px;">
+                        <span style="position:relative;padding-left:5px;top:15px;color:#515151 ;font-size: 15px;"> View IP2 </span>
+                        <span style="position:relative;padding-left:45px;top:15px;color:#515151 ;font-size: 15px;"> Rear view of the classroom </span>
+                        <div  id="summaryIP2" class="summaryIP2" style="position:absolute;left:270px;top:0px;width:180px;height:80px;"></div>
+
+                    </li>
+                    <li class="list-group-item" style="height: 80px;">
+                        <span style="position:relative;padding-left:5px;top:15px;color:#515151 ;font-size: 15px;"> View IP5 </span>
+                        <span style="position:relative;padding-left:45px;top:15px;color:#515151 ;font-size: 15px;"> Front view of the classroom </span>
+                        <div  id="summaryIP5" class="summaryIP5" style="position:absolute;left:270px;top:0px;width:180px;height:80px;"></div>
+                    </li>
+
+                    <li class="list-group-item" style="height: 80px;">
+                        <span style="position:relative;padding-left:2px;top:15px;color:#515151 ;font-size: 15px;">Aircraft </span>
+                        <span style="position:relative;padding-left:20px;top:15px;color:#515151 ;font-size: 15px;">An aircraft is landing on the runway </span>
+                        <div  id="summaryAir" class="summaryAir" style="position:absolute;left:270px;top:0px;width:180px;height:80px;"></div>
+                    </li>
+
+                    <li class="list-group-item" style="height: 80px;">
+                        <span style="position:relative;padding-left:1px;top:15px;color:#515151 ;font-size: 15px;">Car Camera </span>
+                        <span style="position:relative;padding-left:5px;top:15px;color:#515151 ;font-size: 15px;">The car knocked down the camera </span>
+                        <div  id="summaryCar" class="summaryCar" style="position:absolute;left:270px;top:0px;width:180px;height:80px;"></div>
+                    </li>
+
+                    <li class="list-group-item" style="height: 80px;">
+                        <span style="position:relative;padding-left:1px;top:15px;color:#515151 ;font-size: 15px;">St Landing </span>
+                        <span style="position:relative;padding-left:10px;top:15px;color:#515151 ;font-size: 15px;">The plane flying over the coast </span>
+                        <div  id="summaryST" class="summaryST" style="position:absolute;left:270px;top:0px;width:180px;height:80px;"></div>
+                    </li>
+
+                </ul>
+
+            </div>
+        </div>
+
+
+        <div id="leftOverview2" class="leftOverview2" >
+
+            <div id="videoTool" class="videoTool" style="position:relative;top:2px;left: 2px;width: 472px;height: 30px;background-color: #e8e8e8">
+                <span style="position:relative;left:4px;top:2px;color:#515151 ;font-size: 14px;font-weight: bold;">Video View</span>
+                <span style="position:relative;left:200px;top:2px;color:#515151 ;font-size: 14px;font-weight: bold;">Interval:</span>
+                <input type="text" id="secondLeft"  class="secondVideo" name="number" size="1" placeholder="0" readonly="readonly"  style="border-radius: 10px;position:relative;left:210px;top:2px;color:#515151; ">
+                <span style="position:relative;left:210px;top:2px;color:#515151 ;font-size: 10px;">s &nbsp;— </span>
+                <input type="text" id="secondRight" class="secondVideo" name="number" size="1" placeholder="0" readonly="readonly"  style="border-radius: 10px;position:relative;left:216px;top:2px;color:#515151; ">
+                <span style="position:relative;left:216px;top:2px;color:#515151 ;font-size: 10px;">s</span>
+            </div>
+            <div id="videoPlayer" class="videoPlayer" style="position:relative;top:0.5%;left: 2px;width: 472px;height: 243px;/*background-color: gray*/">
+                <video id="video" class="video" autoplay="autoplay" controls="controls" height="243" width="472">
+                    <source id="source" src="{% static 'upload/video/view-HC3.webm' %}" type="video/webm" />
+                </video>
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+
+    <!--center view-->
+    <div id="centerOverview" class="centerOverview">
+        <div id="TsneMenu" class="TsneMenu" style="position:relative;top:2px;left: 2px;width: 846px;height: 30px;background-color: #e8e8e8">
+            <span onclick="functionTSNet()" style="position:relative;left:4px;top:2px;color:#515151 ;font-size: 14px;font-weight: bold;">Time Series Network</span>
+            <img onclick="functionNetwork()" src="{% static 'upload/images/change.png' %}" width="17px" height="17px" style="position:relative;left:12px;cursor: pointer" />
+            <input id="leftNet" name="leftNet" type="number"  style="border-radius: 10px;width:50px; height: 20px; position:relative;left: 40px;top:2px;border-color:#e8e8e8;border:1px;color: #afaeae;font-size:14px;"/>
+            <span style="position:relative;left:41px;top:2px;color:#515151 ;font-size: 10px;">s &nbsp;— </span>
+            <input id="rightNet" name="rightNet" type="number" style="border-radius: 10px;width:50px; height: 20px;position:relative; left: 46px;top:2px;border-color:#e8e8e8;border:1px;color: #afaeae;font-size:14px;"/>
+            <span style="position:relative;left:50px;top:2px;color:#515151 ;font-size: 10px;">s </span>
+        </div>
+
+
+        <div id="Network" class="Network" style="position:absolute;top:37px;left: 660px;width: 520px;height: 415px;/*background-color: black*/">
+        </div>
+
+
+        <div id="MTFline" class="MTFline" style="position:relative;top:427px;left: 5px;width: 840px;height: 180px;/*background-color: blue*/">
+        </div>
+
+    </div>
+
+
+    <!--right view-->
+    <div id="rightOverview" class="rightOverview">
+        <div id="rightOverview1" class="rightOverview1">
+            <div id="multiViewMenu" class="multiViewMenu" style="position:relative;top:2px;left: 2px;width: 570px;height: 30px;background-color: #e8e8e8">
+                <span  style="padding-left:4px;color:#515151 ;font-size: 14px;font-weight: bold">Frame-Feature Tree</span>
+                <img id = "playImage" onclick="functionTree()"  src="{% static 'upload/images/change.png' %}" width="17px" height="17px" style="position:relative;left:4px;cursor: pointer" />
+            </div>
+
+
+            <div id="multiViewDetail" class="multiViewDetail" style="position:relative;top:0.1%;left: 2px;width: 567px;height: 600px;/*background-color: red*/">
+                <div id="BST" class="BST" style="position:relative;top:1%;left: 1%;width: 567px;height: 450px;/*background-color: red*/"></div>
+
+                <div class="swiper-list-card swiper-list" id="imageDiv" style="width: 560px;display: none;/*background-color: black*/">
+                    <div class="swiper-main-card swiper-main"></div>
+                    <img id="prev-card" class="btn leftBtn" src="{% static 'upload/images/left.png' %}" alt="">
+                    <img id="next-card" class="btn rightBtn" src="{% static 'upload/images/right.png' %}" alt="">
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+    <!--bottom view-->
+    <div id="bottomOverview" class="bottomOverview">
+        <div id="bottomOverview1" class="bottomOverview1">
+        <div id="FeaturePixelDetail" class="FeaturePixelDetail" style="position:relative;top:2px;left: 2px;width: 1425px;height: 30px;background-color: #e8e8e8">
+            <span style="padding-left:4px;color:#515151 ;font-size: 14px;font-weight: bold">Feature Detail</span>
+            <img onclick="functionBrush()" src="{% static 'upload/images/brush.png' %}" width="17px" height="17px" style="position:relative;left:4px;cursor: pointer" />
+            <img onclick="functionSelected()" src="{% static 'upload/images/play.png' %}" width="17px" height="17px" style="position:relative;left:8px;cursor: pointer" />
+
+        </div>
+            <div id="featureDetail" class="featureDetail" style="position:relative;top:5px;left: 2px;width: 1425px;height: 235px;overflow-y:auto;/*background-color: darkgray*/"></div>
+        </div>
+
+    </div>
+
+
+</div>
+
+
+<script>
+    multi_featureToolJS()
+    multiSummaryJS()
+
+    //Which video is selected in the drop-down box, load the corresponding video, and display the corresponding pixel bar
+    function selected(){
+        var sel = document.getElementById("video_select") ;
+        var value = sel.options[sel.selectedIndex].value
+        multi_videoPlayerJS(value)
+
+
+        //The pixel details of the corresponding video are displayed
+        d3.select("#featureDetailSvg").remove();
+        d3.select("#summarySvg").remove();
+        d3.select("#geSvg").remove();
+        multifeatureDetailJS(value)
+    }
+
+    var brushPixel = ""
+    var video = "";
+    ////Add a brush to the entire pixel bar）
+    function functionBrush() {
+        var sel = document.getElementById("video_select") ;
+        var value = sel.options[sel.selectedIndex].value-1;
+        window.brushValue = value+1;
+
+        var brush = d3.brushX()    //bbrushX only returns data about the X axis
+            .extent([[3, 1],   //Top left corner of first pixel
+                [1131.4,141]])     //Bottom right corner of last pixel
+            .on("start brush end",brushmoved)
+
+        var brushg=d3.select("#featureDetailSvg")
+            .append("g")
+            .attr("id","brushTotal")
+            .attr("class","brush")
+            .call(brush);  //The role of call(): pass itself as a parameter to a function to draw the brush
+        //Defines the initial extent of the brush on the X axis
+        brushg.call(brush.move,[3,62+3]);
+        var bs = ""   //存储最开始的像素位置
+        var i =1;
+        function brushmoved() {
+            var s =[];
+            s = d3.event.selection;  // // Array type.   d3.event current event. selection current event selection area returns the moving range of x such as [150,250],[151,251],[152,252],
+
+            if (d3.event.type === "start"){       ////The current event starts, that is, the brush gesture starts      start
+                bs = d3.event.selection;
+                brushPixel = d3.event.selection;
+            } else if (d3.event.type === "end"){////The current event ends, that is, the end of the brush gesture end      Another parameter is brush (brush movement)
+                if(i===1)
+                {
+                    brushPixel[0] = s[0]
+                    brushPixel[1] = s[1]
+                    video = sel.options[sel.selectedIndex].value;
+                }
+                if (bs[0] !== s[0] && bs[1] !== s[1]) { //If the left and right values change after the start, it means that the range of the left and right sides has been enlarged
+                    console.log('moved both');
+                } else if (bs[0] !== s[0]) {
+                    console.log('moved left');    //If the right x value of the new brush remains unchanged after starting, it means that the brush boundary on the left is being pulled, and the range is expanding to the left
+                } else {
+                    console.log('moved right');   //If the left x value of the new brush remains unchanged after starting, it means that the brush border on the right is being pulled, and the range is expanding to the right
+                }
+            }
+            if(s==null)
+            {
+                d3.select("#featureDetailSvg").selectAll("rect").classed("active", false);
+            }
+            else {       //If an area is selected, the circle of this area is activated
+                d3.select("#featureDetailSvg").selectAll("rect").classed("active", function (d) {
+                    return s[0] <= d && d <= s[1];
+                });
+
+            }
+        }
+    }
+
+
+    function functionSelected()
+    {
+        //Play the video at the corresponding time
+        functionPlaySelected(brushPixel);
+        //At the same time, the tsne of the corresponding point is displayed
+        d3.select("#tsnePoint").remove();
+        tsnePointJS()
+    }
+
+    //When the Timeseries word is clicked, the corresponding network is not highlighted.
+    function functionTSNet()
+    {
+        netWorkXYJSNoSecond();
+    }
+
+    ////When clicking the toggle button on the right, carousel
+    function functionTree()
+    {
+        //carousel
+        var sel = document.getElementById("video_select") ;
+        var value = sel.options[sel.selectedIndex].value;
+        playImage(value)
+    }
+
+
+    //When the first switch button in the middle is clicked, the MTF network graph and the MTF line graph are displayed
+    function functionNetwork()
+    {
+        console.log('测试红红红红')
+        netWorkXYJS()
+    }
+
+
+
+</script>
+
+</body>
+
+</html>

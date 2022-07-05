@@ -1,0 +1,53 @@
+{
+  "videos":[
+    {
+      "video": [
+        {
+          "id_feature": "0",
+          "score_feature": "0",
+          "line_feature": "0",
+          "r_feature": "0"
+        },
+        {
+          "id_feature": "0",
+          "score_feature": "5",
+          "line_feature": "50",
+          "r_feature": "1"
+        },
+        {
+          "id_feature": "1",
+          "score_feature": "2",
+          "line_feature": "20",
+          "r_feature": "1"
+        },
+        {
+          "id_feature": "2",
+          "score_feature": "3",
+          "line_feature": "30",
+          "r_feature": "1"
+        },
+        {
+          "id_feature": "3",
+          "score_feature": "4",
+          "line_feature": "40",
+          "r_feature": "1"
+        },
+        {
+          "id_feature": "4",
+          "score_feature": "2",
+          "line_feature": "20",
+          "r_feature": "1"
+        }
+      ]
+    }
+
+
+
+
+
+
+  ]
+
+
+
+}

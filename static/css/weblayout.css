@@ -1,0 +1,254 @@
+.mainContainer{
+    width:100%;
+    height:100%;
+}
+
+.leftOverview{
+    width: 25%;
+    height: 100%;
+    margin: 1px;
+    float: left;
+}
+
+.centerOverview{
+    width: 44.5%;
+    height: 70%;
+    float: left;
+    border:1px solid #e0dfdf;
+    margin:2px;
+
+}
+.rightOverview{
+    position: relative;
+    margin-top: 2px;
+    width: 30.1%;
+    height: 70%;
+    float: left;
+}
+
+
+
+.bottomOverview{
+    position: relative;
+    margin-top: 1px;
+    width: 74.8%;
+    height:  29.8%;
+    float: right;
+
+}
+
+.leftOverview1{
+    width: 100%;
+    height: 70%;
+    border: 1px solid #e0dfdf;
+    float:top;
+    margin: 1px;
+
+}
+.leftOverview2{
+    width: 100%;
+    height: 29.7%;
+    border: 1px solid #e0dfdf;
+    float: left;
+    margin: 1px;
+}
+
+
+.rightOverview1{
+    width: 100%;
+    height: 100%;
+    border: 1px solid #e0dfdf;
+    float:left;
+    margin: 0px;
+}
+
+.bottomOverview{
+    position: relative;
+    margin-top: 1px;
+    width: 74.8%;
+    height:  29.8%;
+    float: right;
+}
+
+.bottomOverview1{
+    position: relative;
+    margin-top: 1px;
+    width: 100%;
+    height:  100%;
+    float: left;
+    border:1px solid #e0dfdf;
+
+
+}
+#featureDetailSvg {
+    position: absolute;
+    top: 1px;
+    left: 1px;
+}
+#tsnePoint {
+    position: absolute;
+    top: 1px;
+    left: 1136px;
+}
+
+#thresholdSvg {
+    position: absolute;
+    top: 145px;
+    left: 1px;
+}
+#chartSvg {
+    position: absolute;
+    top: 170px;
+    left: 6px;
+}
+
+
+.select {
+    display: inline-block;
+    width: 70px;
+    vertical-align: middle;
+    overflow: hidden;
+    background-color: #fff;
+    color: #e0dfdf;
+    border: 1px solid #e0dfdf;
+    text-shadow: none;
+    border-radius: 5px;
+    transition: box-shadow 0.25s ease;
+    z-index: 2;
+    font-size:10px;
+    font-style:normal;
+}
+
+.select:hover {
+    box-shadow: 0 1px 4px #e0dfdf;
+}
+
+.select:before {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 0;
+    border: 10px solid transparent;
+    border-top-color: #ccc;
+    top: 14px;
+    right: 10px;
+    cursor: pointer;
+    z-index: -2;
+}
+.select select {
+    cursor: pointer;
+    padding: 2px;
+    width: 100%;
+    border: none;
+    background: transparent;
+    background-image: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+.select select:focus {
+    outline: none;
+}
+
+.video{
+    object-fit: fill;
+}
+
+.brush{
+    z-index: 2;
+}
+
+.secondVideo{
+    font-size:10px;
+    font-style:normal;
+    color: #e0dfdf;
+    border: 1px solid #e0dfdf;
+    text-shadow: none;
+    border-radius: 5px;
+    transition: box-shadow 0.25s ease;
+}
+
+
+.tooltip{
+    font-family:serif;
+    font-size:10px;
+    color: burlywood;
+    width:auto;
+    height:auto;
+    position:absolute;
+    text-align:center;
+    /*border-style:solid;*/
+    border-width:1px;
+    background-color: #e8e8e8;
+    border-radius:5px;
+}
+
+
+.lasso path {
+    stroke: rgb(80,80,80);
+    stroke-width:2px;
+}
+.lasso .drawn {
+    fill-opacity:.05 ;
+}
+.lasso .loop_close {
+    fill:none;
+    stroke-dasharray: 4,4;
+}
+.lasso .origin {
+    fill: #7fa6cb;
+    fill-opacity:.5;
+}
+.not_possible {
+    fill:rgb(200,200,200);
+}
+
+.possible {
+    fill: #88ecd5;
+}
+
+.selected {
+    fill: #88ecd5;
+}
+
+
+
+
+.link {
+    stroke: #aaa;
+}
+
+.node text {
+    stroke:#333;
+    cursos:pointer;
+}
+
+.node circle{
+    stroke:#fff;
+    stroke-width:3px;
+
+}
+
+.bin{
+    z-index: -1;
+}
+
+.links
+{
+    z-index: -1;
+}
+
+
+.loadingModal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: rgba( 255, 255, 255, .8 )
+    url('/static/upload/images/loading1.gif')
+    50% 50%
+    no-repeat;
+ }

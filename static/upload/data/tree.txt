@@ -1,0 +1,707 @@
+var arr =
+                //HC3
+                /*[
+                { "value": 175, /!*parentId: "2"*!/ },
+                {"parent":175,"label":1,"value":158},
+                {"parent":158,"label":1,"value":52},
+                {"parent":52,"label":1,"value":29},
+                {"parent":29,"label":1,"value":11},
+                {"parent":29,"label":2,"value":33},
+               /!* {"parent":33,"label":1,"value":1000},
+                {"parent":33,"label":2,"value":38},
+                /!*{"parent":52,"label":2,"value":1000},*!/
+                {"parent":158,"label":2,"value":166},
+                {"parent":175,"label":2,"value":178},
+                ]*/
+
+                //HC4
+                /*[
+                    { "value": 158,  },
+                    {"parent":158,"label":1,"value":15},
+                    {"parent":15,"label":1,"value":9},
+                    {"parent":9,"label":2,"value":12},
+                    {"parent":15,"label":2,"value":33},
+                    {"parent":33,"label":2,"value":21},
+                    {"parent":158,"label":2,"value":179},
+                    {"parent":179,"label":2,"value":175},
+                    {"parent":179,"label":2,"value":180}]*/
+
+               //IP2
+               /* [   { "value": 50,  },
+                    {"parent":50,"label":1,"value":44},
+                    {"parent":44,"label":1,"value":30},
+                    {"parent":44,"label":2,"value":48},
+                    {"parent":50,"label":2,"value":60},
+                    {"parent":60,"label":2,"value":52},
+                    {"parent":60,"label":2,"value":165},
+                    {"parent":165,"label":2,"value":153},
+                    {"parent":165,"label":2,"value":172}]*/
+
+            //IP5
+                    [
+                    { "value": 165,  },
+                        {"parent":165,"label":1,"value":158},
+                        {"parent":158,"label":1,"value":135},
+                        {"parent":135,"label":1,"value":110},
+                        {"parent":110,"label":1,"value":53},
+                        {"parent":110,"label":2,"value":129},
+                        {"parent":135,"label":2,"value":143},
+                        {"parent":158,"label":2,"value":160},
+                        {"parent":165,"label":2,"value":172}
+                           ]
+
+
+
+
+//Air
+              [         { "value": 170,  },
+                                     {"parent":170,"label":1,"value":148},
+                                     {"parent":148,"label":1,"value":65},
+                                     {"parent":65,"label":1,"value":"e"},
+                                     {"parent":65,"label":2,"value":72},
+                                     {"parent":72,"label":1,"value":"e"},
+                                     {"parent":72,"label":2,"value":80},
+                                     {"parent":80,"label":1,"value":"e"},
+                                     {"parent":80,"label":2,"value":84},
+                                     {"parent":148,"label":2,"value":"e"},
+                                     {"parent":170,"label":2,"value":174},
+                                     {"parent":174,"label":1,"value":"e"},
+                                     {"parent":174,"label":2,"value":176},
+                                     {"parent":176,"label":1,"value":175},
+                                     {"parent":176,"label":2,"value":"e"}
+                                     ]
+
+            //Car
+                  /*[
+                      { "value": 87,  },
+                      {"parent":87,"label":1,"value":85},
+                      {"parent":85,"label":1,"value":63},
+                      {"parent":63,"label":1,"value":54},
+                      {"parent":54,"label":1,"value":38},
+                      {"parent":38,"label":1,"value":35},
+                      {"parent":38,"label":2,"value":"e"},
+                      {"parent":54,"label":2,"value":"e"},
+                      {"parent":63,"label":2,"value":"e"},
+                      {"parent":85,"label":2,"value":"e"},
+                      {"parent":87,"label":2,"value":92},
+                      {"parent":92,"label":1,"value":"e"},
+                      {"parent":92,"label":2,"value":112},
+                      {"parent":112,"label":1,"value":"e"},
+                      {"parent":112,"label":2,"value":117}]*/
+
+ //ST
+[
+                      { "value": 30,  },
+                      {"parent":30,"label":1,"value":6},
+                      {"parent":6,"label":1,"value":"e"},
+                      {"parent":6,"label":2,"value":26},
+                      {"parent":26,"label":1,"value":24},
+                      {"parent":26,"label":2,"value":"e"},
+                      {"parent":30,"label":2,"value":38},
+                      {"parent":38,"label":1,"value":32},
+                      {"parent":32,"label":1,"value":"e"},
+                      {"parent":32,"label":2,"value":34},
+                      {"parent":38,"label":2,"value":44},
+                      {"parent":44,"label":1,"value":"e"},
+                      {"parent":44,"label":2,"value":53}]
+
+
+
+
+            var treeData =
+                //HC3
+                /*{
+                "value": 175,
+                "children": [
+                    {
+                        "parent": 175,
+                        "label": 1,
+                        "value": 158,
+                        "children": [
+                            {
+                                "parent": 158,
+                                "label": 1,
+                                "value": 52,
+                                "children": [
+                                    {
+                                        "parent": 52,
+                                        "label": 1,
+                                        "value": 29,
+                                        "children": [
+                                            {
+                                                "parent": 29,
+                                                "label": 1,
+                                                "value": 11
+                                            },
+                                            {
+                                                "parent": 29,
+                                                "label": 2,
+                                                "value": 33,
+                                                "children": [
+                                                    {
+                                                        "parent": 33,
+                                                        "label": 2,
+                                                        "value": 38
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "parent": 158,
+                                "label": 2,
+                                "value": 166
+                            }
+                        ]
+                    },
+                    {
+                        "parent": 175,
+                        "label": 2,
+                        "value": 178
+                    }
+                ]
+            }*/
+
+                //HC4
+               /* {
+                    "value": 158,
+                    "children": [
+                        {
+                            "parent": 158,
+                            "label": 1,
+                            "value": 15,
+                            "children": [
+                                {
+                                    "parent": 15,
+                                    "label": 1,
+                                    "value": 9,
+                                    "children": [
+                                        {
+                                            "parent": 9,
+                                            "label": 2,
+                                            "value": 12
+                                        }
+                                    ]
+                                },
+                                {
+                                    "parent": 15,
+                                    "label": 2,
+                                    "value": 33,
+                                    "children": [
+                                        {
+                                            "parent": 33,
+                                            "label": 2,
+                                            "value": 21
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "parent": 158,
+                            "label": 2,
+                            "value": 179,
+                            "children": [
+                                {
+                                    "parent": 179,
+                                    "label": 2,
+                                    "value": 175
+                                },
+                                {
+                                    "parent": 179,
+                                    "label": 2,
+                                    "value": 180
+                                }
+                            ]
+                        }
+                    ]
+                };*/
+
+                //IP2
+               /*{
+                "value": 50,
+                "children": [
+                {
+                    "parent": 50,
+                    "label": 1,
+                    "value": 44,
+                    "children": [
+                        {
+                            "parent": 44,
+                            "label": 1,
+                            "value": 30
+                        },
+                        {
+                            "parent": 44,
+                            "label": 2,
+                            "value": 48
+                        }
+                    ]
+                },
+                {
+                    "parent": 50,
+                    "label": 2,
+                    "value": 60,
+                    "children": [
+                        {
+                            "parent": 60,
+                            "label": 2,
+                            "value": 52
+                        },
+                        {
+                            "parent": 60,
+                            "label": 2,
+                            "value": 165,
+                            "children": [
+                                {
+                                    "parent": 165,
+                                    "label": 2,
+                                    "value": 153
+                                },
+                                {
+                                    "parent": 165,
+                                    "label": 2,
+                                    "value": 172
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+            }*/
+
+
+            //IP5
+            {
+                        "value": 165,
+                        "children": [
+                            {
+                                "parent": 165,
+                                "label": 1,
+                                "value": 158,
+                                "children": [
+                                    {
+                                        "parent": 158,
+                                        "label": 1,
+                                        "value": 135,
+                                        "children": [
+                                            {
+                                                "parent": 135,
+                                                "label": 1,
+                                                "value": 110,
+                                                "children": [
+                                                    {
+                                                        "parent": 110,
+                                                        "label": 1,
+                                                        "value": 53
+                                                    },
+                                                    {
+                                                        "parent": 110,
+                                                        "label": 2,
+                                                        "value": 129
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "parent": 135,
+                                                "label": 2,
+                                                "value": 143
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "parent": 158,
+                                        "label": 2,
+                                        "value": 160
+                                    }
+                                ]
+                            },
+                            {
+                                "parent": 165,
+                                "label": 2,
+                                "value": 172
+                            }
+                        ]
+                    }
+            ;
+
+
+
+
+             //Air
+                        /*{
+                            "value": 170,
+                            "children": [
+                            {
+                                "parent": 170,
+                                "label": 1,
+                                "value": 148,
+                                "children": [
+                                    {
+                                        "parent": 148,
+                                        "label": 1,
+                                        "value": 65,
+                                        "children": [
+                                            {
+                                                "parent": 65,
+                                                "label": 2,
+                                                "value": 72,
+                                                "children": [
+                                                    {
+                                                        "parent": 72,
+                                                        "label": 2,
+                                                        "value": 80,
+                                                        "children": [
+                                                            {
+                                                                "parent": 80,
+                                                                "label": 2,
+                                                                "value": 84
+                                                            }
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "parent": 170,
+                                "label": 2,
+                                "value": 174,
+                                "children": [
+                                    {
+                                        "parent": 174,
+                                        "label": 2,
+                                        "value": 176,
+                                        "children": [
+                                            {
+                                                "parent": 176,
+                                                "label": 1,
+                                                "value": 175
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                        }*/
+                        //Air 带空节点
+                    {
+                        "value": 170,
+                        "children": [
+                            {
+                                "parent": 170,
+                                "label": 1,
+                                "value": 148,
+                                "children": [
+                                    {
+                                        "parent": 148,
+                                        "label": 1,
+                                        "value": 65,
+                                        "children": [
+                                            {
+                                                "parent": 65,
+                                                "label": 1,
+                                                "value": "e"
+                                            },
+                                            {
+                                                "parent": 65,
+                                                "label": 2,
+                                                "value": 72,
+                                                "children": [
+                                                    {
+                                                        "parent": 72,
+                                                        "label": 1,
+                                                        "value": "e"
+                                                    },
+                                                    {
+                                                        "parent": 72,
+                                                        "label": 2,
+                                                        "value": 80,
+                                                        "children": [
+                                                            {
+                                                                "parent": 80,
+                                                                "label": 1,
+                                                                "value": "e"
+                                                            },
+                                                            {
+                                                                "parent": 80,
+                                                                "label": 2,
+                                                                "value": 84
+                                                            }
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "parent": 148,
+                                        "label": 2,
+                                        "value": "e"
+                                    }
+                                ]
+                            },
+                            {
+                                "parent": 170,
+                                "label": 2,
+                                "value": 174,
+                                "children": [
+                                    {
+                                        "parent": 174,
+                                        "label": 1,
+                                        "value": "e"
+                                    },
+                                    {
+                                        "parent": 174,
+                                        "label": 2,
+                                        "value": 176,
+                                        "children": [
+                                            {
+                                                "parent": 176,
+                                                "label": 1,
+                                                "value": 175
+                                            },
+                                            {
+                                                "parent": 176,
+                                                "label": 2,
+                                                "value": "e"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+
+
+
+              //Car
+                         /*{
+                             "value": 87,
+                             "children": [
+                             {
+                                 "parent": 87,
+                                 "label": 1,
+                                 "value": 85,
+                                 "children": [
+                                     {
+                                         "parent": 85,
+                                         "label": 1,
+                                         "value": 63,
+                                         "children": [
+                                             {
+                                                 "parent": 63,
+                                                 "label": 1,
+                                                 "value": 54,
+                                                 "children": [
+                                                     {
+                                                         "parent": 54,
+                                                         "label": 1,
+                                                         "value": 38,
+                                                         "children": [
+                                                             {
+                                                                 "parent": 38,
+                                                                 "label": 1,
+                                                                 "value": 35
+                                                             }
+                                                         ]
+                                                     }
+                                                 ]
+                                             }
+                                         ]
+                                     }
+                                 ]
+                             },
+                             {
+                                 "parent": 87,
+                                 "label": 2,
+                                 "value": 92,
+                                 "children": [
+                                     {
+                                         "parent": 92,
+                                         "label": 2,
+                                         "value": 112,
+                                         "children": [
+                                             {
+                                                 "parent": 112,
+                                                 "label": 2,
+                                                 "value": 117
+                                             }
+                                         ]
+                                     }
+                                 ]
+                             }
+                         ]
+                         }*/
+                         //Car 带空节点
+                        /* {
+                                     "value": 87,
+                                     "children": [
+                                         {
+                                             "parent": 87,
+                                             "label": 1,
+                                             "value": 85,
+                                             "children": [
+                                                 {
+                                                     "parent": 85,
+                                                     "label": 1,
+                                                     "value": 63,
+                                                     "children": [
+                                                         {
+                                                             "parent": 63,
+                                                             "label": 1,
+                                                             "value": 54,
+                                                             "children": [
+                                                                 {
+                                                                     "parent": 54,
+                                                                     "label": 1,
+                                                                     "value": 38,
+                                                                     "children": [
+                                                                         {
+                                                                             "parent": 38,
+                                                                             "label": 1,
+                                                                             "value": 35
+                                                                         },
+                                                                         {
+                                                                             "parent": 38,
+                                                                             "label": 2,
+                                                                             "value": "e"
+                                                                         }
+                                                                     ]
+                                                                 },
+                                                                 {
+                                                                     "parent": 54,
+                                                                     "label": 2,
+                                                                     "value": "e"
+                                                                 }
+                                                             ]
+                                                         },
+                                                         {
+                                                             "parent": 63,
+                                                             "label": 2,
+                                                             "value": "e"
+                                                         }
+                                                     ]
+                                                 },
+                                                 {
+                                                     "parent": 85,
+                                                     "label": 2,
+                                                     "value": "e"
+                                                 }
+                                             ]
+                                         },
+                                         {
+                                             "parent": 87,
+                                             "label": 2,
+                                             "value": 92,
+                                             "children": [
+                                                 {
+                                                     "parent": 92,
+                                                     "label": 1,
+                                                     "value": "e"
+                                                 },
+                                                 {
+                                                     "parent": 92,
+                                                     "label": 2,
+                                                     "value": 112,
+                                                     "children": [
+                                                         {
+                                                             "parent": 112,
+                                                             "label": 1,
+                                                             "value": "e"
+                                                         },
+                                                         {
+                                                             "parent": 112,
+                                                             "label": 2,
+                                                             "value": 117
+                                                         }
+                                                     ]
+                                                 }
+                                             ]
+                                         }
+                                     ]
+                                 }*/
+
+
+             //ST 带空节点
+                                 {
+                                     "value": 30,
+                                     "children": [
+                                         {
+                                             "parent": 30,
+                                             "label": 1,
+                                             "value": 6,
+                                             "children": [
+                                                 {
+                                                     "parent": 6,
+                                                     "label": 1,
+                                                     "value": "e"
+                                                 },
+                                                 {
+                                                     "parent": 6,
+                                                     "label": 2,
+                                                     "value": 26,
+                                                     "children": [
+                                                         {
+                                                             "parent": 26,
+                                                             "label": 1,
+                                                             "value": 24
+                                                         },
+                                                         {
+                                                             "parent": 26,
+                                                             "label": 2,
+                                                             "value": "e"
+                                                         }
+                                                     ]
+                                                 }
+                                             ]
+                                         },
+                                         {
+                                             "parent": 30,
+                                             "label": 2,
+                                             "value": 38,
+                                             "children": [
+                                                 {
+                                                     "parent": 38,
+                                                     "label": 1,
+                                                     "value": 32,
+                                                     "children": [
+                                                         {
+                                                             "parent": 32,
+                                                             "label": 1,
+                                                             "value": "e"
+                                                         },
+                                                         {
+                                                             "parent": 32,
+                                                             "label": 2,
+                                                             "value": 34
+                                                         }
+                                                     ]
+                                                 },
+                                                 {
+                                                     "parent": 38,
+                                                     "label": 2,
+                                                     "value": 44,
+                                                     "children": [
+                                                         {
+                                                             "parent": 44,
+                                                             "label": 1,
+                                                             "value": "e"
+                                                         },
+                                                         {
+                                                             "parent": 44,
+                                                             "label": 2,
+                                                             "value": 53
+                                                         }
+                                                     ]
+                                                 }
+                                             ]
+                                         }
+                                     ]
+                                 }
+
+
