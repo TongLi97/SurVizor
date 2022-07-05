@@ -7,7 +7,7 @@ This website is Survizor's Django Web project.
 
 <div align="center">
   <div style="float:left;margin-right:10px;">
-  <img src="pipline.png" width="380px"><br>
+  <img src="/pipeline.png" width="380px"><br>
     <p style="font-size:1.5vw;">Pipeline of <b>Survizor</b>.</p>
   </div>
 </div>
